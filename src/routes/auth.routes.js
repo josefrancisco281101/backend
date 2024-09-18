@@ -6,5 +6,6 @@ const router = Router()
 
 router.post('/login', AuthController.login)
 router.get('/me', validateJWT, AuthController.me)
+router.post('/register', AuthController.register);
 
 export default router

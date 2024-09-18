@@ -9,10 +9,7 @@ class User {
     return users
   }
 
-  /**
-   * Buscar un usuario por su ID
-   * @param id ID del usuario a buscar
-   */
+
   static async findById (id) {
     const [user] = await pool.execute(
       'SELECT user_id, f_name, m_name, l_name, username, email, password, image FROM users WHERE user_id = ?',
@@ -21,11 +18,7 @@ class User {
     return user[0]
   }
 
-  /**
-   * Buscar un usuario por una determinado columna
-   * @param columna Nombre de la columna en la base de datos
-   * @param valor Valor con el cual debe coincidir la columna
-   */
+
   static async findOne (columna, valor) {
     const [user] = await pool.execute(
       `SELECT user_id, f_name, m_name, l_name, username, email, password, image FROM users WHERE ${columna} = ?`,
@@ -34,16 +27,7 @@ class User {
     return user[0]
   }
 
-  /**
-   * Crear nuevo usuario
-   * @param fName Primer nombre
-   * @param mName Segundo nombre
-   * @param lName Apellidos
-   * @param username
-   * @param email
-   * @param password
-   * @param image Foto de perfil
-   */
+
   static async create({ fName, lName, username, email, password, mName, image }) {
     if (!fName || !lName || !username || !email || !password) {
       throw new Error('Campos obligatorios faltantes');
